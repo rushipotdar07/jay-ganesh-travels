@@ -8,7 +8,7 @@
 //     doc,
 //     serverTimestamp,
 //     onAuthStateChanged
-// } from "../../js/firebase.js";
+// } from "././js/firebase.js";
 
 
 // onAuthStateChanged(
@@ -286,7 +286,7 @@ import {
     updateDoc,
     serverTimestamp,
     onAuthStateChanged
-} from "../../js/firebase.js";
+} from "././js/firebase.js";
 
 onAuthStateChanged(auth, (user) => {
     if (!user) {

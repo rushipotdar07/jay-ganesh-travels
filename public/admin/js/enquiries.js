@@ -8,7 +8,7 @@
 // query,
 // orderBy,
 // onAuthStateChanged
-// }from "../../js/firebase.js";
+// }from "././js/firebase.js";
 
 
 // const list=
@@ -151,7 +151,7 @@ import {
     query,
     orderBy,
     onAuthStateChanged
-} from "../../js/firebase.js";
+} from "././js/firebase.js";
 
 
 const list =
