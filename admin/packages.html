@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Manage Packages</title>
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+
+<body>
+
+    <div class="admin-layout">
+
+        <aside class="sidebar">
+            <h2>Travel Admin</h2>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="packages.html" class="active">Packages</a>
+            <a href="bookings.html">Bookings</a>
+            <a href="gallery.html">Gallery upload</a>
+            <a href="enquiries.html">Enquiries</a>
+            <a href="testimonials.html">Testimonials</a>
+        </aside>
+
+        <main class="content">
+
+            <div class="page-head">
+                <div>
+                    <h1>Packages</h1>
+                    <p class="page-sub">Manage every pilgrimage tour package</p>
+                </div>
+                <button id="openAdd" class="primary-btn">+ Add Package</button>
+            </div>
+
+            <div id="packageList" class="package-grid">
+                <p class="loading-text">Loading packages...</p>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Modal -->
+    <div id="formOverlay" class="overlay">
+        <div class="modal">
+
+            <div class="modal-head">
+                <h2 id="modalTitle">Add Package</h2>
+                <button type="button" id="closeForm" class="icon-btn">&times;</button>
+            </div>
+
+            <form id="packageForm">
+
+                <input id="title" placeholder="Package Title" required>
+
+                <textarea id="description" placeholder="Description"></textarea>
+
+                <div class="row-2">
+                    <input id="duration" placeholder="Duration (e.g. 3 Days / 2 Nights)">
+                    <input id="price" placeholder="Price (₹)">
+                </div>
+
+                <input id="bookingAmount" placeholder="Minimum Booking Amount" type="number" required>
+
+                <textarea id="itinerary"
+                    placeholder="Day 1: Pune to Ujjain&#10;Day 2: Temple Visit&#10;Day 3: Return Journey"></textarea>
+
+                <h3>Travel Dates</h3>
+
+                <div id="dateContainer">
+                    <div class="date-row">
+                        <input type="date" class="startDate">
+                        <span class="arrow">→</span>
+                        <input type="date" class="endDate">
+                    </div>
+                </div>
+
+                <button type="button" id="addDate" class="ghost-btn">+ Add More Date</button>
+
+                <div class="row-2">
+                    <input id="busSeats" placeholder="Bus Seats" type="number">
+                    <select id="busType">
+                        <option>AC</option>
+                        <option>Non AC</option>
+                    </select>
+                </div>
+
+                <label class="file-label">
+                    Package Images
+                    <input type="file" id="images" multiple accept="image/*">
+                </label>
+
+                <button class="primary-btn submit-btn">Save Package</button>
+            </form>
+
+        </div>
+    </div>
+
+    <script type="module" src="js/packages.js"></script>
+</body>
+
+</html>

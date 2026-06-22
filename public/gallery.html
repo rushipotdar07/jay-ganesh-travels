@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="mr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Gallery</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .gallery-section-sub {
+            margin-top: -2px;
+        }
+
+        .gallery-grid {
+            margin-top: 8px;
+        }
+
+        /* ---------- Gallery card: refined hover, premium feel ---------- */
+        .gallery-grid .tour-card,
+        .gallery-grid .gallery-card {
+            cursor: pointer;
+            position: relative;
+            transition: transform .45s cubic-bezier(.2, .8, .2, 1),
+                box-shadow .45s cubic-bezier(.2, .8, .2, 1);
+        }
+
+        .gallery-grid .tour-card.lb-clickable:hover,
+        .gallery-grid .gallery-card.lb-clickable:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 28px 56px rgba(26, 18, 8, .14);
+        }
+
+        .gallery-grid .tour-card.lb-clickable:focus-visible {
+            outline: 2px solid var(--saffron);
+            outline-offset: 3px;
+        }
+
+        /* thumbnail zoom + gentle darken on hover, so the "open" cue reads clearly */
+        .gallery-grid .tour-thumb-wrap,
+        .gallery-grid .tour-card .tour-thumb-wrap {
+            position: relative;
+        }
+
+        .gallery-grid .tour-thumb-wrap::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(26, 18, 8, .38), rgba(26, 18, 8, 0) 55%);
+            opacity: 0;
+            transition: opacity .4s ease;
+        }
+
+        .gallery-grid .tour-card.lb-clickable:hover .tour-thumb-wrap::after {
+            opacity: 1;
+        }
+
+        .gallery-grid .tour-thumb {
+            transition: transform .6s cubic-bezier(.2, .8, .2, 1), filter .5s ease;
+        }
+
+        .gallery-grid .tour-card.lb-clickable:hover .tour-thumb {
+            transform: scale(1.1);
+        }
+
+        /* expand/zoom glyph that fades in on hover, centered over the image */
+        .gallery-grid .tour-thumb-wrap::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 46px;
+            height: 46px;
+            margin: -23px 0 0 -23px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .92);
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231a1208' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 3h6v6'/%3E%3Cpath d='M9 21H3v-6'/%3E%3Cpath d='M21 3l-7 7'/%3E%3Cpath d='M3 21l7-7'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 18px 18px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, .22);
+            opacity: 0;
+            transform: scale(.6);
+            transition: opacity .35s ease, transform .35s cubic-bezier(.34, 1.56, .64, 1);
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .gallery-grid .tour-card.lb-clickable:hover .tour-thumb-wrap::before {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* thin gold edge accent that sweeps in on hover for a premium touch */
+        .gallery-grid .tour-card.lb-clickable {
+            position: relative;
+        }
+
+        .gallery-grid .tour-card.lb-clickable::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            border: 1px solid transparent;
+            background: linear-gradient(135deg, var(--gold), transparent 40%) border-box;
+            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity .4s ease;
+            pointer-events: none;
+        }
+
+        .gallery-grid .tour-card.lb-clickable:hover::after {
+            opacity: .55;
+        }
+
+        /* staggered entrance for gallery cards as they load */
+        .gallery-grid .tour-card.lb-clickable {
+            animation: galleryCardIn .6s cubic-bezier(.2, .8, .2, 1) backwards;
+        }
+
+        .gallery-grid .tour-card.lb-clickable:nth-child(1) {
+            animation-delay: .02s;
+        }
+
+        .gallery-grid .tour-card.lb-clickable:nth-child(2) {
+            animation-delay: .08s;
+        }
+
+        .gallery-grid .tour-card.lb-clickable:nth-child(3) {
+            animation-delay: .14s;
+        }
+
+        .gallery-grid .tour-card.lb-clickable:nth-child(4) {
+            animation-delay: .2s;
+        }
+
+        .gallery-grid .tour-card.lb-clickable:nth-child(5) {
+            animation-delay: .26s;
+        }
+
+        .gallery-grid .tour-card.lb-clickable:nth-child(6) {
+            animation-delay: .32s;
+        }
+
+        .gallery-grid .tour-card.lb-clickable:nth-child(n+7) {
+            animation-delay: .36s;
+        }
+
+        @keyframes galleryCardIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(.98);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .gallery-grid .tour-card.lb-clickable {
+                animation: none;
+            }
+        }
+
+
+        /* =========================================================
+   LIGHTBOX
+   ========================================================= */
+
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity .35s ease, visibility .35s ease;
+        }
+
+        .lightbox.open {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .lightbox-backdrop {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 40%, rgba(26, 18, 8, .93), rgba(10, 7, 3, .97));
+            backdrop-filter: blur(6px);
+        }
+
+        body.lb-lock {
+            overflow: hidden;
+        }
+
+        .lb-stage {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: min(1100px, 90vw);
+            max-height: 90vh;
+            padding: 0 24px;
+        }
+
+        .lb-frame {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 40px 90px rgba(0, 0, 0, .55);
+            background: rgba(0, 0, 0, .2);
+            opacity: 0;
+            transform: scale(.94) translateY(10px);
+            transition: opacity .42s cubic-bezier(.2, .8, .2, 1), transform .42s cubic-bezier(.2, .8, .2, 1);
+            max-height: 76vh;
+            display: flex;
+        }
+
+        .lb-frame.lb-anim-in {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+
+        .lb-img {
+            display: block;
+            max-width: 100%;
+            max-height: 76vh;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .lb-shimmer {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(110deg, rgba(255, 255, 255, .04) 8%, rgba(255, 255, 255, .14) 18%, rgba(255, 255, 255, .04) 33%);
+            background-size: 200% 100%;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .lb-shimmer.show {
+            opacity: 1;
+            animation: lbShimmerMove 1.2s linear infinite;
+        }
+
+        @keyframes lbShimmerMove {
+            from {
+                background-position: 200% 0;
+            }
+
+            to {
+                background-position: -200% 0;
+            }
+        }
+
+        .lb-caption {
+            margin-top: 22px;
+            text-align: center;
+            color: #fff;
+            max-width: 640px;
+        }
+
+        .lb-title {
+            font-family: 'Noto Serif Devanagari', serif;
+            font-size: 1.15rem;
+            font-weight: 600;
+            letter-spacing: .01em;
+            margin-bottom: 8px;
+        }
+
+        .lb-meta-row {
+            display: flex;
+            justify-content: center;
+        }
+
+        .lb-counter {
+            font-size: .78rem;
+            letter-spacing: .08em;
+            color: rgba(255, 255, 255, .55);
+            border: 1px solid rgba(255, 255, 255, .18);
+            border-radius: 20px;
+            padding: 4px 14px;
+        }
+
+        .lb-close {
+            position: absolute;
+            top: 22px;
+            right: 26px;
+            z-index: 5;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, .18);
+            background: rgba(255, 255, 255, .06);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background .25s, transform .25s, border-color .25s;
+        }
+
+        .lb-close:hover {
+            background: var(--saffron);
+            border-color: var(--saffron);
+            transform: rotate(90deg);
+        }
+
+        .lb-nav {
+            position: absolute;
+            top: 50%;
+            z-index: 5;
+            width: 52px;
+            height: 52px;
+            margin-top: -26px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, .18);
+            background: rgba(255, 255, 255, .06);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background .25s, transform .2s, border-color .25s;
+        }
+
+        .lb-nav:hover {
+            background: var(--saffron);
+            border-color: var(--saffron);
+        }
+
+        .lb-nav:active {
+            transform: scale(.92) translateY(-50%);
+        }
+
+        .lb-prev {
+            left: 24px;
+        }
+
+        .lb-next {
+            right: 24px;
+        }
+
+        @media (max-width: 700px) {
+            .lb-close {
+                top: 14px;
+                right: 14px;
+                width: 38px;
+                height: 38px;
+            }
+
+            .lb-nav {
+                width: 42px;
+                height: 42px;
+            }
+
+            .lb-prev {
+                left: 8px;
+            }
+
+            .lb-next {
+                right: 8px;
+            }
+
+            .lb-frame,
+            .lb-img {
+                max-height: 64vh;
+            }
+
+            .lb-title {
+                font-size: 1rem;
+            }
+        }
+
+        /* ── PAGE HERO (Gallery / generic banner) ── */
+        .page-hero {
+            position: relative;
+            margin-top: 64px;
+            /* clears fixed nav */
+            height: 380px;
+            overflow: hidden;
+            border-radius: 12px;
+        }
+
+        .page-hero-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            filter: brightness(.6);
+        }
+
+        .page-hero-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 8%;
+            background: linear-gradient(to top, rgba(26, 18, 8, .55), rgba(26, 18, 8, .15) 60%, rgba(26, 18, 8, .1));
+        }
+
+        .page-hero-breadcrumb {
+            font-size: 13px;
+            color: #e8d9c8;
+            margin-bottom: 14px;
+        }
+
+        .page-hero-breadcrumb a {
+            color: #e8d9c8;
+            text-decoration: none;
+        }
+
+        .page-hero-breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .page-hero-breadcrumb span {
+            color: rgba(232, 217, 200, .6);
+            margin: 0 4px;
+        }
+
+        .page-hero-breadcrumb .current {
+            color: var(--saffron);
+            margin: 0;
+        }
+
+        .page-hero-title {
+            font-family: 'Noto Serif Devanagari', serif;
+            font-size: clamp(2.4rem, 5vw, 3.6rem);
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 10px;
+            line-height: 1.1;
+        }
+
+        .page-hero-sub {
+            font-size: 15px;
+            color: rgba(255, 255, 255, .85);
+            max-width: 480px;
+        }
+
+        @media (max-width: 700px) {
+            .page-hero {
+                height: 280px;
+            }
+
+            .page-hero-overlay {
+                padding: 0 6%;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <nav id="nav">
+
+        <a class="nav-brand" href="index.html">
+
+            <div class="nav-brandmark">
+                ज
+            </div>
+
+            <div class="nav-name">
+                जय गणेश ट्रॅव्हल्स
+                <small>PUNE · EST. 2014</small>
+            </div>
+
+        </a>
+
+
+        <ul class="nav-links">
+
+            <li>
+                <a href="index.html">Home</a>
+            </li>
+
+            <li>
+                <a href="packages.html">पॅकेजेस</a>
+            </li>
+
+            <li>
+                <a href="gallery.html">गॅलरी</a>
+            </li>
+
+            <li>
+                <a href="contact.html">संपर्क</a>
+            </li>
+
+            <div class="lang-switch">
+                <button class="lang-toggle" id="langToggle">🌐</button>
+                <div class="lang-menu" id="langMenu">
+                    <button onclick="changeLang('mr')">मराठी</button>
+                    <button onclick="changeLang('hi')">हिंदी</button>
+                    <button onclick="changeLang('en')">English</button>
+                </div>
+            </div>
+
+        </ul>
+
+
+        <a class="nav-book" href="booking.html">
+            Booking
+        </a>
+
+
+        <div class="ham" id="ham">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </div>
+
+    </nav>
+
+
+
+    <section class="section gallery-section">
+
+        <!-- ── GALLERY HERO ── -->
+        <section class="page-hero">
+            <!-- <img class="page-hero-img" src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=1600&q=80"
+                alt="Gallery"> -->
+            <img class="page-hero-img" src="../images/gallery_bannerImg.jpg"
+                alt="Gallery">
+            <div class="page-hero-overlay">
+                <p class="page-hero-breadcrumb">
+                    <a href="index.html">Home</a> <span>›</span> <span class="current">गॅलरी</span>
+                </p>
+                <h1 class="page-hero-title">Gallery</h1>
+                <p class="page-hero-sub">यात्रेतील आठवणी — दर वर्षी आमच्या प्रवासातील खास क्षण — श्रद्धा, उत्साह आणि
+                    सहप्रवाशांच्या आठवणी एकाच ठिकाणी.</p>
+            </div>
+        </section>
+
+        <div class="tours-grid gallery-grid" id="galleryList">
+
+
+            <div class="loading">
+                Loading...
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+    <!-- ── LIGHTBOX ── -->
+    <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Image viewer">
+
+        <div class="lightbox-backdrop" id="lightboxBackdrop"></div>
+
+        <button class="lb-close" id="lbClose" aria-label="Close">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8"
+                stroke-linecap="round">
+                <line x1="4" y1="4" x2="20" y2="20" />
+                <line x1="20" y1="4" x2="4" y2="20" />
+            </svg>
+        </button>
+
+        <button class="lb-nav lb-prev" id="lbPrev" aria-label="Previous image">
+            <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 18 9 12 15 6" />
+            </svg>
+        </button>
+
+        <button class="lb-nav lb-next" id="lbNext" aria-label="Next image">
+            <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6" />
+            </svg>
+        </button>
+
+        <div class="lb-stage">
+            <div class="lb-frame" id="lbFrame">
+                <img class="lb-img" id="lbImg" src="" alt="">
+                <div class="lb-shimmer" id="lbShimmer"></div>
+            </div>
+
+            <div class="lb-caption">
+                <h3 class="lb-title" id="lbTitle"></h3>
+                <div class="lb-meta-row">
+                    <span class="lb-counter" id="lbCounter"></span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <script type="module" src="../js/gallery.js"></script>
+
+    <!-- ── GALLERY LIGHTBOX SCRIPT ── -->
+    <script>
+        (function () {
+            const grid = document.getElementById("galleryList");
+            const lightbox = document.getElementById("lightbox");
+            const lbImg = document.getElementById("lbImg");
+            const lbTitle = document.getElementById("lbTitle");
+            const lbCounter = document.getElementById("lbCounter");
+            const lbFrame = document.getElementById("lbFrame");
+            const lbShimmer = document.getElementById("lbShimmer");
+            const lbClose = document.getElementById("lbClose");
+            const lbPrev = document.getElementById("lbPrev");
+            const lbNext = document.getElementById("lbNext");
+            const lbBackdrop = document.getElementById("lightboxBackdrop");
+
+            let items = [];      // [{src, title}]
+            let activeIndex = 0;
+            let lastFocused = null;
+
+            // Pulls every renderable card out of the grid, however gallery.js built them.
+            function collectItems() {
+                const cards = grid.querySelectorAll("[data-gallery-item], .tour-card, .gallery-card");
+                const collected = [];
+
+                cards.forEach((card) => {
+                    const img = card.querySelector("img");
+                    if (!img) return;
+
+                    const titleEl = card.querySelector(
+                        "[data-gallery-title], .tour-title, .gallery-title, h2, h3"
+                    );
+
+                    collected.push({
+                        src: img.getAttribute("data-full") || img.currentSrc || img.src,
+                        title: (titleEl ? titleEl.textContent : img.alt || "").trim(),
+                        node: card
+                    });
+                });
+
+                return collected;
+            }
+
+            function wireCards() {
+                items = collectItems();
+
+                items.forEach((item, i) => {
+                    if (item.node.dataset.lbWired) return;
+                    item.node.dataset.lbWired = "true";
+                    item.node.classList.add("lb-clickable");
+                    item.node.setAttribute("tabindex", "0");
+                    item.node.setAttribute("role", "button");
+                    item.node.setAttribute("aria-label", "Open photo" + (item.title ? ": " + item.title : ""));
+
+                    item.node.addEventListener("click", (e) => {
+                        // don't hijack clicks on real links/buttons inside the card
+                        if (e.target.closest("a, button")) return;
+                        openLightbox(i);
+                    });
+
+                    item.node.addEventListener("keydown", (e) => {
+                        if (e.key === "Enter" || e.key === " ") {
+                            e.preventDefault();
+                            openLightbox(i);
+                        }
+                    });
+                });
+            }
+
+            function openLightbox(index) {
+                items = collectItems(); // refresh in case grid changed
+                if (!items.length) return;
+
+                activeIndex = ((index % items.length) + items.length) % items.length;
+                lastFocused = document.activeElement;
+
+                renderActive();
+                lightbox.classList.add("open");
+                lightbox.setAttribute("aria-hidden", "false");
+                document.body.classList.add("lb-lock");
+                lbClose.focus();
+            }
+
+            function closeLightbox() {
+                lightbox.classList.remove("open");
+                lightbox.setAttribute("aria-hidden", "true");
+                document.body.classList.remove("lb-lock");
+                if (lastFocused && typeof lastFocused.focus === "function") {
+                    lastFocused.focus();
+                }
+            }
+
+            function renderActive() {
+                const item = items[activeIndex];
+                if (!item) return;
+
+                lbShimmer.classList.add("show");
+                lbFrame.classList.remove("lb-anim-in");
+
+                const preload = new Image();
+                preload.onload = () => {
+                    lbImg.src = item.src;
+                    lbTitle.textContent = item.title || "";
+                    lbCounter.textContent = (activeIndex + 1) + " / " + items.length;
+                    lbShimmer.classList.remove("show");
+                    requestAnimationFrame(() => lbFrame.classList.add("lb-anim-in"));
+                };
+                preload.src = item.src;
+            }
+
+            function step(delta) {
+                if (!items.length) return;
+                activeIndex = ((activeIndex + delta) % items.length + items.length) % items.length;
+                renderActive();
+            }
+
+            lbClose.addEventListener("click", closeLightbox);
+            lbBackdrop.addEventListener("click", closeLightbox);
+            lbPrev.addEventListener("click", () => step(-1));
+            lbNext.addEventListener("click", () => step(1));
+
+            document.addEventListener("keydown", (e) => {
+                if (!lightbox.classList.contains("open")) return;
+                if (e.key === "Escape") closeLightbox();
+                if (e.key === "ArrowLeft") step(-1);
+                if (e.key === "ArrowRight") step(1);
+            });
+
+            // swipe support
+            let touchStartX = null;
+            lightbox.addEventListener("touchstart", (e) => {
+                touchStartX = e.changedTouches[0].clientX;
+            }, { passive: true });
+
+            lightbox.addEventListener("touchend", (e) => {
+                if (touchStartX === null) return;
+                const dx = e.changedTouches[0].clientX - touchStartX;
+                if (Math.abs(dx) > 40) step(dx > 0 ? -1 : 1);
+                touchStartX = null;
+            }, { passive: true });
+
+            // gallery.js renders cards asynchronously (fetched from API) — observe
+            // the container so newly-inserted cards get wired automatically.
+            const observer = new MutationObserver(() => wireCards());
+            observer.observe(grid, { childList: true, subtree: true });
+
+            // initial pass in case content is already present
+            wireCards();
+        })();
+    </script>
+
+    <script>
+
+        const nav = document.getElementById("nav");
+
+        document.getElementById("ham")
+            .onclick = () => {
+
+                nav.classList.toggle("open");
+
+            };
+
+    </script>
+
+    <!-- Google Translate -->
+    <div id="google_translate_element" style="display:none;"></div>
+
+    <script>
+        const langToggle = document.getElementById("langToggle");
+        const langMenu = document.getElementById("langMenu");
+
+        langToggle.addEventListener("click", (e) => {
+            e.stopPropagation();
+            langMenu.classList.toggle("open");
+        });
+
+        document.addEventListener("click", (e) => {
+            if (!langMenu.contains(e.target) && e.target !== langToggle) {
+                langMenu.classList.remove("open");
+            }
+        });
+
+        function changeLang(lang) {
+
+            if (lang === 'mr') {
+                document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                location.reload();
+                return;
+            }
+
+            const langPair = `/mr/${lang}`;
+            document.cookie = `googtrans=${langPair}; path=/`;
+            document.cookie = `googtrans=${langPair}; path=/; domain=.${location.hostname}`;
+            location.reload();
+        }
+
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement(
+                {
+                    pageLanguage: 'mr',
+                    includedLanguages: 'mr,hi,en',
+                    autoDisplay: false
+                },
+                'google_translate_element'
+            );
+        }
+
+    </script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+</body>
+
+</html>

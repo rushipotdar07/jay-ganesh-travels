@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="mr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Booking</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+    <nav id="nav">
+        <a class="nav-brand" href="index.html">
+
+            <div class="nav-brandmark">
+                ज
+            </div>
+            <div class="nav-name">
+                जय गणेश ट्रॅव्हल्स
+                <small>PUNE · EST. 2014</small>
+            </div>
+        </a>
+
+
+
+        <ul class="nav-links">
+            <li>
+                <a href="index.html">
+                    Home
+                </a>
+            </li>
+
+            <li>
+                <a href="packages.html">
+                    पॅकेजेस
+                </a>
+            </li>
+            <li>
+                <a href="gallery.html">
+                    गॅलरी
+                </a>
+            </li>
+            <li>
+                <a href="contact.html">
+                    संपर्क
+                </a>
+            </li>
+            <div class="lang-switch">
+            <button class="lang-toggle" id="langToggle">🌐</button>
+            <div class="lang-menu" id="langMenu">
+                <button onclick="changeLang('mr')">मराठी</button>
+                <button onclick="changeLang('hi')">हिंदी</button>
+                <button onclick="changeLang('en')">English</button>
+            </div>
+        </div>
+        </ul>
+        <div class="ham" id="ham">
+
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+    <section class="section">
+        <p class="section-label">
+            Booking
+        </p>
+        <h1 class="section-h2">
+            यात्रा बुकिंग
+        </h1>
+        <div class="booking-form-wrap">
+            <form id="bookingPageForm">
+                <div class="form-row">
+
+                    <div class="fg">
+                        <label>
+                            नाव
+                        </label>
+
+                        <input id="customerName" required>
+
+                    </div>
+                    <div class="fg">
+                        <label>
+                            फोन
+                        </label>
+                        <input id="phone" required>
+                    </div>
+
+                    <div class="fg">
+                        <label>
+                            Email
+                        </label>
+
+                        <input id="email">
+
+                    </div>
+                    <div class="fg">
+
+                        <label>
+                            Package
+                        </label>
+
+                        <select id="packageSelect" required>
+
+                            <option value="">
+                                Select Package
+                            </option>
+
+                        </select>
+
+                        <input type="hidden" id="packageId">
+
+                    </div>
+                    <div class="fg">
+                        <label>
+                            Enter Number of Passengers
+                        </label>
+                        <input type="number" id="passengers" min="1" required>
+                    </div>
+                    <div class="fg">
+
+                        <label>
+                            Travel Date
+                        </label>
+
+                        <select id="travelDate" required>
+
+                            <option>
+                                Select Date
+                            </option>
+
+                        </select>
+                    </div>
+
+                    <div class="fg">
+
+                        <label>
+                            Minimum Booking Amount
+                        </label>
+
+                        <input id="bookingAmount" readonly placeholder="Booking amount">
+
+                    </div>
+
+
+                    <div class="fg">
+
+                        <label>
+                            Payment Screenshot
+                        </label>
+                        <input type="file" id="paymentScreenshot" accept="image/*" required>
+                    </div>
+                </div>
+                <div class="payment-box">
+                    <h3>
+                        Pay Booking Amount
+                    </h3>
+                    <img src="../images/payment-qr.png" class="qr-code">
+                    <p>
+                        Scan QR and upload payment screenshot
+                    </p>
+                </div>
+                <button class="form-submit">
+                    Confirm Booking
+                </button>
+            </form>
+        </div>
+    </section>
+    <div id="toast" style="
+display:none;
+position:fixed;
+bottom:25px;
+right:25px;
+background:#d4500a;
+color:white;
+padding:15px;
+border-radius:8px;
+">
+
+    </div>
+    <script type="module" src="../js/booking-page.js"></script>
+
+    <script>
+        const nav = document.getElementById("nav");
+
+        document.getElementById("ham")
+            .onclick = () => {
+
+                nav.classList.toggle("open");
+
+            };
+        window.showToast = function (msg) {
+
+            const t = document.getElementById("toast");
+            t.innerHTML = msg;
+            t.style.display = "block";
+            setTimeout(() => {
+                t.style.display = "none";
+            }, 3000);
+        };
+    </script>
+
+    <!-- Google Translate -->
+    <div id="google_translate_element" style="display:none;"></div>
+
+    <script>
+        const langToggle = document.getElementById("langToggle");
+        const langMenu = document.getElementById("langMenu");
+
+        langToggle.addEventListener("click", (e) => {
+            e.stopPropagation();
+            langMenu.classList.toggle("open");
+        });
+
+        document.addEventListener("click", (e) => {
+            if (!langMenu.contains(e.target) && e.target !== langToggle) {
+                langMenu.classList.remove("open");
+            }
+        });
+
+        function changeLang(lang) {
+
+            if (lang === 'mr') {
+                document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                location.reload();
+                return;
+            }
+
+            const langPair = `/mr/${lang}`;
+            document.cookie = `googtrans=${langPair}; path=/`;
+            document.cookie = `googtrans=${langPair}; path=/; domain=.${location.hostname}`;
+            location.reload();
+        }
+
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement(
+                {
+                    pageLanguage: 'mr',
+                    includedLanguages: 'mr,hi,en',
+                    autoDisplay: false
+                },
+                'google_translate_element'
+            );
+        }
+
+    </script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+
+</html>

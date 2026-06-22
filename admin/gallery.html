@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Gallery</title>
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+
+<body>
+
+    <div class="admin-layout">
+
+        <aside class="sidebar">
+            <h2>Travel Admin</h2>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="packages.html">Packages</a>
+            <a href="bookings.html">Bookings</a>
+            <a href="gallery.html" class="active">Gallery</a>
+            <a href="enquiries.html">Enquiries</a>
+            <a href="testimonials.html">Testimonials</a>
+            
+        </aside>
+
+        <main class="content">
+
+            <div class="page-head">
+                <div>
+                    <h1>Gallery</h1>
+                    <p class="page-sub">Photos shown on the public gallery page</p>
+                </div>
+            </div>
+
+            <div class="review-form-card">
+                <h2>Upload Image</h2>
+                <form id="galleryForm" class="review-form-grid">
+                    <input id="galleryTitle" class="field-input" placeholder="Caption (optional)">
+                    <input type="file" id="galleryImage" class="field-input" accept="image/*" required>
+                    <button type="submit" class="primary-btn">Upload</button>
+                </form>
+            </div>
+
+            <div id="galleryGrid" class="package-grid">
+                <p class="loading-text">Loading gallery...</p>
+            </div>
+
+        </main>
+    </div>
+
+    <script type="module" src="js/gallery.js"></script>
+</body>
+
+</html>

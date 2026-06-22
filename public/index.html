@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="mr">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>जय गणेश ट्रॅव्हल्स | Travel Agency</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif+Devanagari:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+    <!-- FLOAT BUTTON -->
+
+    <a class="float-wa" href="tel:7447455999">
+        📞
+    </a>
+    <!-- NAV -->
+
+    <nav id="nav">
+        <a class="nav-brand" href="#">
+            <div class="nav-brandmark">
+                ज
+            </div>
+
+            <div class="nav-name">
+                जय गणेश ट्रॅव्हल्स
+                <small>
+                    PUNE · EST. 2014
+                </small>
+            </div>
+        </a>
+        <ul class="nav-links">
+            <li>
+                <a href="./packages.html">
+                    पॅकेजेस
+                </a>
+            </li>
+            <li>
+                <a href="./gallery.html">
+                    गॅलरी
+                </a>
+            </li>
+
+            <li>
+                <a href="./booking.html">
+                    बुकिंग
+                </a>
+            </li>
+            <li>
+                <a href="./contact.html">
+                    संपर्क
+                </a>
+            </li>
+
+            <div class="lang-switch">
+                <button class="lang-toggle" id="langToggle">🌐</button>
+                <div class="lang-menu" id="langMenu">
+                    <button onclick="changeLang('mr')">मराठी</button>
+                    <button onclick="changeLang('hi')">हिंदी</button>
+                    <button onclick="changeLang('en')">English</button>
+                </div>
+            </div>
+        </ul>
+        <a class="nav-book" href="./booking.html">
+            बुकिंग करा
+        </a>
+        <div class="ham" id="ham">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+    <!-- HERO -->
+    
+    <section class="hero">
+
+        <div class="hero-carousel" id="heroCarousel">
+
+            <div class="hero-slide active">
+                <img src="../images/hero-temple1.jpg">
+            </div>
+
+            <div class="hero-slide">
+                <img src="../images/hero-temple2.jpg">
+            </div>
+
+            <div class="hero-slide">
+                <img src="../images/gallery_bannerImg(1).jpg">
+            </div>
+
+            <div class="hero-slide">
+                <img src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=1600">
+            </div>
+
+            <div class="hero-scrim"></div>
+
+            <div class="hero-carousel-dots" id="heroDots"></div>
+
+        </div>
+
+        <div class="hero-left">
+            <div class="hero-eyebrow">
+                || श्री स्वामी समर्थ ||
+            </div>
+            <h1 class="hero-h1">
+                तीर्थक्षेत्री जाऊया,
+                <br>
+                <em>
+                    भक्तीत न्हाऊया
+                </em>
+            </h1>
+            <p class="hero-p">
+                पुणे ते संपूर्ण भारतभर —
+                आरामदायक AC व Non-AC बस,
+                विश्वासू सेवा आणि अविस्मरणीय यात्रा.
+            </p>
+            <div class="hero-actions">
+                <a href="./packages.html" class="btn-fill">
+                    यात्रा पाहा
+                </a>
+                <a href="./booking.html" class="btn-outline">
+                    बुकिंग करा
+                </a>
+            </div>
+            <div class="hero-stats">
+                <div>
+                    <span class="hero-stat-num">
+                        ५००+
+                    </span>
+                    <span class="hero-stat-label">
+                        समाधानी प्रवासी
+                    </span>
+                </div>
+                <div>
+                    <span class="hero-stat-num">
+                        ५०+
+                    </span>
+                    <span class="hero-stat-label">
+                        यात्रा पूर्ण
+                    </span>
+                </div>
+                <div>
+                    <span class="hero-stat-num">
+                        १०+
+                    </span>
+                    <span class="hero-stat-label">
+                        वर्षे अनुभव
+                    </span>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <!-- MARQUEE -->
+
+    <div class="marquee-bar">
+        <div class="marquee-inner" id="placesSlider">
+        </div>
+    </div>
+
+    <!-- PACKAGES -->
+    <section class="section" id="tours">
+        <p class="section-label">
+            आमच्या यात्रा
+        </p>
+        <h2 class="section-h2">
+            दिव्य आध्यात्मिक अनुभव
+        </h2>
+        <p class="section-sub">
+            उपलब्ध पॅकेज
+        </p>
+        <div class="tours-grid" id="packagesContainer">
+            <div class="loading">
+                Loading Packages...
+            </div>
+        </div>
+    </section>
+    <!-- WHY US -->
+    <section class="section">
+        <p class="section-label">
+            आम्हाला का निवडावे
+        </p>
+        <h2 class="section-h2">
+            विश्वासाचे नाव
+        </h2>
+        <div class="why-grid">
+            <div class="why-item">
+                <div class="why-num">
+                    01
+                </div>
+                <div class="why-title">सुरक्षित प्रवास</div>
+                <div class="why-desc">
+                    GPS Tracking आणि अनुभवी चालक
+                </div>
+            </div>
+            <div class="why-item">
+                <div class="why-num">
+                    02
+                </div>
+                <div class="why-title">
+                    सर्व समाविष्ट पॅकेज
+                </div>
+                <div class="why-desc">
+                    हॉटेल, जेवण आणि दर्शन सुविधा
+                </div>
+            </div>
+            <div class="why-item">
+                <div class="why-num">
+                    03
+                </div>
+                <div class="why-title">
+                    परवडणारे दर
+                </div>
+                <div class="why-desc">
+                    योग्य किमतीत उत्तम सेवा
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- GALLERY -->
+    <section class="section" id="gallery">
+        <p class="section-label">
+            गॅलरी
+        </p>
+        <h2 class="section-h2">
+            यात्रेतील आठवणी
+        </h2>
+        <div class="tours-grid" id="galleryContainer">
+            <div class="loading">
+                Loading Gallery...
+            </div>
+        </div>
+    </section>
+    <!-- TESTIMONIAL -->
+    <section class="section">
+        <p class="section-label">
+            अभिप्राय
+        </p>
+        <h2 class="section-h2">
+            प्रवाशांनी काय सांगितले
+        </h2>
+        <div class="testi-grid" id="testimonialContainer">
+            <div class="loading">
+                Loading Testimonials...
+            </div>
+        </div>
+    </section>
+    <!-- BOOKING -->
+    <!-- <section class="section booking-section" id="booking">
+        <div class="booking-inner">
+            <div class="booking-left">
+                <p class="section-label">
+                    बुकिंग
+                </p>
+                <h2 class="section-h2">
+                    आजच जागा निश्चित करा
+                </h2>
+                <div class="booking-contact" id="contact">
+                    <div class="bc-item">
+                        <div class="bc-icon"> 📞
+                        </div>
+                        <div>
+                            <div class="bc-label">
+                                फोन
+                            </div>
+                            <div class="bc-val">
+                                74474 55999
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="booking-form-wrap">
+
+                <form id="bookingForm">
+                    <div class="form-row">
+                        <div class="fg">
+                            <label>नाव</label>
+                            <input id="customerName" required>
+                        </div>
+                        <div class="fg">
+                            <label>
+                                फोन
+                            </label>
+                            <input id="phone" required>
+                        </div>
+                        <div class="fg">
+                            <label>
+                                Email
+                            </label>
+                            <input id="email">
+                        </div>
+                        <div class="fg">
+                            <label>
+                                Package
+                            </label>
+                            <select id="packageSelect">
+                                <option>
+                                    Select Package
+                                </option>
+                            </select>
+                        </div>
+                        <div class="fg">
+                            <label>
+                                Travel Date
+                            </label>
+                            <input type="date" id="travelDate">
+                        </div>
+                    </div>
+                    <button class="form-submit">
+                        बुकिंग पाठवा
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- CONTACT ENQUIRY -->
+    <section class="section" id="contact">
+        <p class="section-label"> संपर्क
+        </p>
+        <h2 class="section-h2">
+            आमच्याशी संपर्क करा
+        </h2>
+        <div class="booking-form-wrap">
+            <form id="enquiryForm">
+                <div class="form-row">
+                    <div class="fg">
+                        <label>
+                            नाव
+                        </label>
+                        <input id="enqName" required>
+                    </div>
+                    <div class="fg">
+                        <label>
+                            फोन
+                        </label>
+                        <input id="enqPhone" required>
+                    </div>
+                    <div class="fg">
+                        <label>
+                            ईमेल
+                        </label>
+                        <input id="enqEmail">
+                    </div>
+                    <div class="fg span2">
+                        <label>
+                            मेसेज
+                        </label>
+                        <textarea id="enqMessage" placeholder="तुमचा संदेश लिहा"></textarea>
+                    </div>
+                </div>
+                <button class="form-submit">
+                    चौकशी पाठवा
+                </button>
+            </form>
+        </div>
+    </section>
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-top">
+            <div>
+                <div class="footer-brand">
+                    🕉 जय गणेश ट्रॅव्हल्स
+                </div>
+                <div class="footer-tagline">
+                    "तीर्थक्षेत्री जाऊया, भक्तीत न्हाऊया"
+                </div>
+            </div>
+            <ul class="footer-links">
+                <li><a href="#">Home</a></li>
+                <li> <a href="./packages.html">Packages</a></li>
+
+
+                <li>
+                    <a href="./gallery.html">
+                        गॅलरी
+                    </a>
+                </li>
+
+
+                <li>
+                    <a href="./booking.html">
+                        बुकिंग
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="footer-bottom">
+            <span class="footer-copy">
+                © 2026 जय गणेश ट्रॅव्हल्स
+            </span>
+            <span class="footer-phone">
+                📞 74474 55999
+                📞 86006 84111
+            </span>
+        </div>
+    </footer>
+    <!-- TOAST -->
+    <div id="toast" style="
+position:fixed;
+bottom:25px;
+right:25px;
+background:#d4500a;
+color:white;
+padding:15px 25px;
+border-radius:8px;
+display:none;
+z-index:9999;
+">
+
+    </div>
+    <!-- FIREBASE + APP SCRIPTS -->
+    <script type="module" src="../js/firebase.js"></script>
+    <script type="module" src="../js/home.js"></script>
+    <script type="module" src="../js/booking.js"></script>
+    <script>
+        // mobile menu
+        const nav = document.getElementById("nav");
+        const ham = document.getElementById("ham");
+        ham.onclick = () => {
+
+            nav.classList.toggle("open");
+
+        };
+        // toast helper
+
+        window.showToast = function (message) {
+            const toast = document.getElementById("toast");
+            toast.innerHTML = message;
+            toast.style.display = "block";
+
+            setTimeout(() => {
+                toast.style.display = "none";
+
+            }, 3000);
+        };
+        // loading animation
+
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            () => {
+
+
+                const observer = new IntersectionObserver(
+                    entries => {
+
+                        entries.forEach(e => {
+
+                            if (e.isIntersecting) {
+                                e.target.classList.add("in");
+                                observer.unobserve(e.target);
+                            }
+
+                        });
+
+                    },
+                    { threshold: .15 }
+                );
+
+                // re-observe whenever new cards get added dynamically (after Firestore loads)
+                function observeRevealCards() {
+                    document.querySelectorAll(".rv:not(.in)")
+                        .forEach((el, i) => {
+                            el.style.transitionDelay = `${(i % 6) * 90}ms`;
+                            observer.observe(el);
+                        });
+                }
+
+                window.observeRevealCards = observeRevealCards;
+
+                observeRevealCards();
+            }
+        );
+    </script>
+    <!-- Google Translate -->
+    <div id="google_translate_element" style="display:none;"></div>
+
+    <script>
+        const langToggle = document.getElementById("langToggle");
+        const langMenu = document.getElementById("langMenu");
+
+        langToggle.addEventListener("click", (e) => {
+            e.stopPropagation();
+            langMenu.classList.toggle("open");
+        });
+
+        document.addEventListener("click", (e) => {
+            if (!langMenu.contains(e.target) && e.target !== langToggle) {
+                langMenu.classList.remove("open");
+            }
+        });
+
+        function changeLang(lang) {
+
+            if (lang === 'mr') {
+                document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                location.reload();
+                return;
+            }
+
+            const langPair = `/mr/${lang}`;
+            document.cookie = `googtrans=${langPair}; path=/`;
+            document.cookie = `googtrans=${langPair}; path=/; domain=.${location.hostname}`;
+            location.reload();
+        }
+
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement(
+                {
+                    pageLanguage: 'mr',
+                    includedLanguages: 'mr,hi,en',
+                    autoDisplay: false
+                },
+                'google_translate_element'
+            );
+        }
+
+    </script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- hero section -->
+    <script>
+        (function () {
+            const carousel = document.getElementById("heroCarousel");
+            if (!carousel) return;
+
+            const slides = carousel.querySelectorAll(".hero-slide");
+            const dotsWrap = document.getElementById("heroDots");
+            let current = 0;
+            let timer = null;
+
+            slides.forEach((_, i) => {
+                const dot = document.createElement("div");
+                dot.className = "hero-dot" + (i === 0 ? " active" : "");
+                dot.addEventListener("click", () => goTo(i));
+                dotsWrap.appendChild(dot);
+            });
+
+            const dots = dotsWrap.querySelectorAll(".hero-dot");
+
+            function goTo(index) {
+                slides[current].classList.remove("active");
+                dots[current].classList.remove("active");
+                current = index;
+                slides[current].classList.add("active");
+                dots[current].classList.add("active");
+                restart();
+            }
+
+            function next() {
+                goTo((current + 1) % slides.length);
+            }
+
+            function restart() {
+                clearInterval(timer);
+                timer = setInterval(next, 4500);
+            }
+
+            restart();
+        })();
+    </script>
+</body>
+
+</html>

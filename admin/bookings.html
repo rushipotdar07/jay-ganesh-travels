@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Bookings</title>
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+
+<body>
+
+    <div class="admin-layout">
+
+        <aside class="sidebar">
+            <h2>Travel Admin</h2>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="packages.html">Packages</a>
+            <a href="bookings.html" class="active">Bookings</a>
+            <a href="gallery.html">Gallery upload</a>
+            <a href="enquiries.html">Enquiries</a>
+            <a href="testimonials.html">Testimonials</a>
+        </aside>
+
+        <main class="content">
+
+            <div class="page-head">
+                <div>
+                    <h1>Bookings</h1>
+                    <p class="page-sub">Grouped by package, with live remaining-amount tracking</p>
+                </div>
+            </div>
+
+            <div class="search-bar">
+                <input id="searchBooking" placeholder="Search by name, phone, or package...">
+            </div>
+
+            <div id="bookingList">
+                <p class="loading-text">Loading bookings...</p>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Payment screenshot lightbox -->
+    <div id="screenshotOverlay" class="overlay">
+        <div class="lightbox">
+            <button type="button" id="closeScreenshot" class="icon-btn lightbox-close">&times;</button>
+            <img id="screenshotImg" src="" alt="Payment screenshot">
+        </div>
+    </div>
+
+    <script type="module" src="js/bookings.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,652 @@
+<!-- <!DOCTYPE html>
+<html lang="mr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Contact</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+
+</head>
+
+<body>
+
+
+    <nav id="nav">
+
+        <a class="nav-brand" href="index.html">
+
+            <div class="nav-brandmark">
+                ज
+            </div>
+
+            <div class="nav-name">
+
+                जय गणेश ट्रॅव्हल्स
+
+                <small>PUNE · EST. 2014</small>
+
+            </div>
+
+        </a>
+
+
+        <ul class="nav-links">
+
+            <li>
+                <a href="index.html">Home</a>
+            </li>
+
+            <li>
+                <a href="packages.html">पॅकेजेस</a>
+            </li>
+
+            <li>
+                <a href="gallery.html">गॅलरी</a>
+            </li>
+
+            <li>
+                <a href="contact.html">संपर्क</a>
+            </li>
+
+        </ul>
+
+        <div class="lang-switch">
+            <button class="lang-toggle" id="langToggle">🌐</button>
+            <div class="lang-menu" id="langMenu">
+                <button onclick="changeLang('mr')">मराठी</button>
+                <button onclick="changeLang('hi')">हिंदी</button>
+                <button onclick="changeLang('en')">English</button>
+            </div>
+        </div>
+
+
+        <a class="nav-book" href="booking.html">Booking</a>
+
+
+        <div class="ham" id="ham">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </div>
+
+    </nav>
+
+
+
+
+    <section class="section">
+
+
+        <p class="section-label">
+            संपर्क
+        </p>
+
+
+        <h1 class="section-h2">
+
+            आमच्याशी संपर्क करा
+
+        </h1>
+
+
+
+        <div class="booking-form-wrap">
+
+
+            <form id="contactForm">
+
+
+
+                <div class="form-row">
+
+
+                    <div class="fg">
+
+                        <label>
+                            नाव
+                        </label>
+
+                        <input id="name" required>
+
+                    </div>
+
+
+
+                    <div class="fg">
+
+                        <label>
+                            फोन
+                        </label>
+
+                        <input id="phone" required>
+
+                    </div>
+
+
+
+                    <div class="fg">
+
+                        <label>
+                            Email
+                        </label>
+
+                        <input id="email">
+
+                    </div>
+
+
+
+                    <div class="fg span2">
+
+                        <label>
+                            Message
+                        </label>
+
+
+                        <textarea id="message" required></textarea>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                <button class="form-submit">
+
+                    चौकशी पाठवा
+
+                </button>
+
+
+            </form>
+
+
+        </div>
+
+
+    </section>
+
+
+
+
+    <div id="toast" style="
+display:none;
+position:fixed;
+bottom:25px;
+right:25px;
+background:#d4500a;
+color:white;
+padding:15px;
+border-radius:8px;
+">
+    </div>
+
+
+
+
+    <script type="module" src="../js/contact.js"></script>
+
+
+    <script>
+
+        const nav = document.getElementById("nav");
+
+        document.getElementById("ham")
+            .onclick = () => {
+
+                nav.classList.toggle("open");
+
+            };
+
+
+        window.showToast = function (msg) {
+
+            let t = document.getElementById("toast");
+
+            t.innerHTML = msg;
+
+            t.style.display = "block";
+
+
+            setTimeout(() => {
+
+                t.style.display = "none";
+
+            }, 3000);
+
+
+        };
+
+
+    </script>
+
+    
+    <div id="google_translate_element" style="display:none;"></div>
+
+    <script>
+        const langToggle = document.getElementById("langToggle");
+        const langMenu = document.getElementById("langMenu");
+
+        langToggle.addEventListener("click", (e) => {
+            e.stopPropagation();
+            langMenu.classList.toggle("open");
+        });
+
+        document.addEventListener("click", (e) => {
+            if (!langMenu.contains(e.target) && e.target !== langToggle) {
+                langMenu.classList.remove("open");
+            }
+        });
+
+        function changeLang(lang) {
+
+            if (lang === 'mr') {
+                document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                location.reload();
+                return;
+            }
+
+            const langPair = `/mr/${lang}`;
+            document.cookie = `googtrans=${langPair}; path=/`;
+            document.cookie = `googtrans=${langPair}; path=/; domain=.${location.hostname}`;
+            location.reload();
+        }
+
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement(
+                {
+                    pageLanguage: 'mr',
+                    includedLanguages: 'mr,hi,en',
+                    autoDisplay: false
+                },
+                'google_translate_element'
+            );
+        }
+
+    </script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</body>
+
+</html> -->
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="mr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>संपर्क | जय गणेश ट्रॅव्हल्स</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+
+</head>
+
+<body>
+
+    <a class="float-wa" href="tel:7447455999">📞</a>
+
+    <nav id="nav">
+
+        <a class="nav-brand" href="index.html">
+
+            <div class="nav-brandmark">
+                ज
+            </div>
+
+            <div class="nav-name">
+
+                जय गणेश ट्रॅव्हल्स
+
+                <small>PUNE · EST. 2014</small>
+
+            </div>
+
+        </a>
+
+
+        <ul class="nav-links">
+
+            <li>
+                <a href="index.html">Home</a>
+            </li>
+
+            <li>
+                <a href="packages.html">पॅकेजेस</a>
+            </li>
+
+            <li>
+                <a href="gallery.html">गॅलरी</a>
+            </li>
+
+            <li>
+                <a href="contact.html" class="active">संपर्क</a>
+            </li>
+
+        </ul>
+
+        <div class="lang-switch">
+            <button class="lang-toggle" id="langToggle">🌐</button>
+            <div class="lang-menu" id="langMenu">
+                <button onclick="changeLang('mr')">मराठी</button>
+                <button onclick="changeLang('hi')">हिंदी</button>
+                <button onclick="changeLang('en')">English</button>
+            </div>
+        </div>
+
+
+        <a class="nav-book" href="booking.html">Booking</a>
+
+
+        <div class="ham" id="ham">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </div>
+
+    </nav>
+
+    <!-- HERO BANNER -->
+    <section class="contact-hero">
+        <img class="contact-hero-img"
+            src="https://images.unsplash.com/photo-1609920658906-8223bd289001?w=1600"
+            alt="Jay Ganesh Travels">
+        <div class="contact-hero-overlay">
+            <div class="contact-hero-breadcrumb">
+                <a href="index.html">Home</a> / संपर्क
+            </div>
+            <h1>आमच्याशी संपर्क करा</h1>
+            <p>तुमची पुढची यात्रा कुठे जाणार आहे, आम्हाला सांगा.</p>
+        </div>
+    </section>
+
+    <!-- FORM + INFO -->
+    <section class="section contact-section">
+
+        <div class="contact-grid">
+
+            <div class="contact-form-card">
+                <p class="section-label">चौकशी</p>
+                <h2 class="section-h2" style="margin-bottom:20px;">तुमची यात्रा ठरवा</h2>
+
+                <form id="contactForm">
+                    <div class="form-row">
+
+                        <div class="fg">
+                            <label>नाव</label>
+                            <input id="name" required>
+                        </div>
+
+                        <div class="fg">
+                            <label>फोन</label>
+                            <input id="phone" required>
+                        </div>
+
+                        <div class="fg">
+                            <label>Email</label>
+                            <input id="email">
+                        </div>
+
+                        <div class="fg span2">
+                            <label>Message</label>
+                            <textarea id="message" required></textarea>
+                        </div>
+
+                    </div>
+
+                    <button class="form-submit">चौकशी पाठवा</button>
+                </form>
+            </div>
+
+            <div class="contact-info-stack">
+
+                <div class="contact-info-card">
+                    <div class="bc-icon">📞</div>
+                    <div>
+                        <div class="bc-label">फोन करा</div>
+                        <a class="bc-val" href="tel:7447455999">74474 55999</a>
+                        <div class="bc-sub">सोम - शनि, सकाळी १० ते संध्याकाळी ६</div>
+                    </div>
+                </div>
+
+                <div class="contact-info-card">
+                    <div class="bc-icon">💬</div>
+                    <div>
+                        <div class="bc-label">WhatsApp</div>
+                        <a class="bc-val" href="https://wa.me/917447455999?text=Namaskar%2C%20mala%20travel%20package%20baddal%20mahiti%20have%20aahe."
+                            target="_blank">74474 55999</a>
+                        <div class="bc-sub">सर्वात जलद संपर्क पद्धत</div>
+                    </div>
+                </div>
+
+                <div class="contact-info-card">
+                    <div class="bc-icon">✉</div>
+                    <div>
+                        <div class="bc-label">ईमेल</div>
+                        <a class="bc-val" href="mailto:info@jayganeshtravels.com">info@jayganeshtravels.com</a>
+                    </div>
+                </div>
+
+                <div class="contact-info-card">
+                    <div class="bc-icon">📍</div>
+                    <div>
+                        <div class="bc-label">ऑफिस</div>
+                        <div class="bc-val">हडपसर, पुणे</div>
+                    </div>
+                </div>
+
+                <div class="contact-info-card">
+                    <div class="bc-icon">🕒</div>
+                    <div>
+                        <div class="bc-label">कार्यालयीन वेळ</div>
+                        <div class="bc-val">सकाळी १० ते संध्याकाळी ६</div>
+                        <div class="bc-sub">रविवार: फक्त अपॉइंटमेंटने</div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- MAP -->
+        <div class="contact-map-wrap">
+            <iframe
+                src="https://www.openstreetmap.org/export/embed.html?bbox=73.92%2C18.49%2C73.96%2C18.53&layer=mapnik&marker=18.51%2C73.94"
+                style="border:0;width:100%;height:380px;border-radius:18px;"
+                loading="lazy">
+            </iframe>
+        </div>
+
+    </section>
+
+    <!-- FAQ -->
+    <section class="section">
+        <p class="section-label">वारंवार विचारले जाणारे प्रश्न</p>
+        <h2 class="section-h2">तुमचे प्रश्न, आमची उत्तरे</h2>
+
+        <div class="faq-list">
+
+            <details class="faq-item">
+                <summary>बुकिंग कशी करावी?</summary>
+                <p>तुम्ही वेबसाईटवरील "बुकिंग करा" बटणावर क्लिक करून फॉर्म भरू शकता, किंवा थेट फोन / WhatsApp वर संपर्क करू शकता. आमची टीम काही तासांत तुमची बुकिंग कन्फर्म करेल.</p>
+            </details>
+
+            <details class="faq-item">
+                <summary>बुकिंगसाठी किती अॅडव्हान्स रक्कम भरावी लागते?</summary>
+                <p>प्रत्येक पॅकेजसाठी ठरलेली किमान बुकिंग रक्कम पॅकेज पेजवर दिलेली असते. ती UPI द्वारे भरून, पेमेंट स्क्रीनशॉट अपलोड केल्यावर तुमची सीट राखीव होते.</p>
+            </details>
+
+            <details class="faq-item">
+                <summary>बुकिंग केल्यानंतर प्रवासाची तारीख बदलता येते का?</summary>
+                <p>होय, उपलब्धतेनुसार तारीख बदलता येते. यासाठी किमान ३-४ दिवस आधी आम्हाला फोन किंवा WhatsApp वर सूचित करा.</p>
+            </details>
+
+            <details class="faq-item">
+                <summary>बुकिंग रद्द केल्यास पैसे परत मिळतात का?</summary>
+                <p>प्रवासाच्या ७ दिवस आधी रद्द केल्यास बुकिंग रकमेचा काही भाग परत केला जातो. प्रवासाच्या जवळ रद्द केल्यास परतावा शक्य नसतो. नक्की अटी फोनवर विचारून घ्या.</p>
+            </details>
+
+            <details class="faq-item">
+                <summary>पॅकेजमध्ये काय समाविष्ट असते?</summary>
+                <p>साधारणपणे AC / Non-AC बस प्रवास, राहण्याची सोय, नाश्ता-जेवण आणि दर्शनासाठी स्थानिक वाहतूक समाविष्ट असते. प्रत्येक पॅकेजचे नेमके तपशील त्या पॅकेजच्या पेजवर दिलेले आहेत.</p>
+            </details>
+
+            <details class="faq-item">
+                <summary>लहान मुलांसाठी वेगळे दर आहेत का?</summary>
+                <p>होय, ५ वर्षांखालील मुलांसाठी सहसा सूट दिली जाते. नेमका दर बुकिंगच्या वेळी फोनवर कन्फर्म करून घ्या.</p>
+            </details>
+
+            <details class="faq-item">
+                <summary>बस मध्ये जेवणाची व्यवस्था कशी असते?</summary>
+                <p>पॅकेजनुसार चहा-नाश्ता, जेवण थांब्यांवर किंवा हॉटेलमध्ये दिले जाते. शाकाहारी जेवणाची व्यवस्था असते; विशेष आहाराची गरज असल्यास आधी सांगा.</p>
+            </details>
+
+            <details class="faq-item">
+                <summary>प्रवासासाठी ओळखपत्र सोबत ठेवावे लागते का?</summary>
+                <p>होय, प्रत्येक प्रवाशाने आधार कार्ड किंवा इतर वैध ओळखपत्र सोबत ठेवणे आवश्यक आहे.</p>
+            </details>
+
+            <details class="faq-item">
+                <summary>पाऊस किंवा खराब हवामान असल्यास यात्रा होते का?</summary>
+                <p>सुरक्षेला प्राधान्य देत मार्ग व वेळेत आवश्यक बदल केले जातात. अत्यंत प्रतिकूल हवामानात यात्रा पुढे ढकलली जाऊ शकते, याची माहिती आधी दिली जाते.</p>
+            </details>
+
+            <details class="faq-item">
+                <summary>ग्रुप बुकिंगवर सवलत मिळते का?</summary>
+                <p>१० किंवा त्यापेक्षा जास्त व्यक्तींच्या ग्रुप बुकिंगवर विशेष सवलत दिली जाते. ग्रुप बुकिंगसाठी थेट फोनवर संपर्क करा.</p>
+            </details>
+
+            <details class="faq-item">
+                <summary>बस मध्ये किती सामान घेऊन जाता येते?</summary>
+                <p>प्रत्येक प्रवाशासाठी एक मध्यम आकाराची बॅग पुरेशी असते. जास्त सामान असल्यास आधी कळवा जेणेकरून जागेची व्यवस्था करता येईल.</p>
+            </details>
+
+            <details class="faq-item">
+                <summary>बुकिंगची पुष्टी कशी मिळते?</summary>
+                <p>पेमेंट स्क्रीनशॉट अपलोड केल्यानंतर आमची टीम फोन किंवा WhatsApp वर बुकिंग कन्फर्मेशन देईल.</p>
+            </details>
+
+        </div>
+    </section>
+
+
+    <div id="toast" style="
+display:none;
+position:fixed;
+bottom:25px;
+right:25px;
+background:#d4500a;
+color:white;
+padding:15px;
+border-radius:8px;
+">
+    </div>
+
+
+
+
+    <script type="module" src="../js/contact.js"></script>
+
+
+    <script>
+
+        const nav = document.getElementById("nav");
+
+        document.getElementById("ham")
+            .onclick = () => {
+
+                nav.classList.toggle("open");
+
+            };
+
+
+        window.showToast = function (msg) {
+
+            let t = document.getElementById("toast");
+
+            t.innerHTML = msg;
+
+            t.style.display = "block";
+
+
+            setTimeout(() => {
+
+                t.style.display = "none";
+
+            }, 3000);
+
+
+        };
+
+
+    </script>
+
+    <!-- Google Translate -->
+    <div id="google_translate_element" style="display:none;"></div>
+
+    <script>
+        const langToggle = document.getElementById("langToggle");
+        const langMenu = document.getElementById("langMenu");
+
+        langToggle.addEventListener("click", (e) => {
+            e.stopPropagation();
+            langMenu.classList.toggle("open");
+        });
+
+        document.addEventListener("click", (e) => {
+            if (!langMenu.contains(e.target) && e.target !== langToggle) {
+                langMenu.classList.remove("open");
+            }
+        });
+
+        function changeLang(lang) {
+
+            if (lang === 'mr') {
+                document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                location.reload();
+                return;
+            }
+
+            const langPair = `/mr/${lang}`;
+            document.cookie = `googtrans=${langPair}; path=/`;
+            document.cookie = `googtrans=${langPair}; path=/; domain=.${location.hostname}`;
+            location.reload();
+        }
+
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement(
+                {
+                    pageLanguage: 'mr',
+                    includedLanguages: 'mr,hi,en',
+                    autoDisplay: false
+                },
+                'google_translate_element'
+            );
+        }
+
+    </script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</body>
+
+</html>

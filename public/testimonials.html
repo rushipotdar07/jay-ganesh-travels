@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="mr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Testimonials</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+
+</head>
+
+<body>
+
+
+    <nav id="nav">
+
+        <a class="nav-brand" href="index.html">
+
+            <div class="nav-brandmark">
+                ज
+            </div>
+
+            <div class="nav-name">
+
+                जय गणेश ट्रॅव्हल्स
+
+                <small>PUNE · EST. 2014</small>
+
+            </div>
+
+        </a>
+
+
+        <ul class="nav-links">
+
+            <li>
+                <a href="index.html">Home</a>
+            </li>
+
+            <li>
+                <a href="packages.html">Packages</a>
+            </li>
+
+            <li>
+                <a href="gallery.html">Gallery</a>
+            </li>
+
+            <li>
+                <a href="testimonials.html">Reviews</a>
+            </li>
+            <div class="lang-switch">
+                <button class="lang-toggle" id="langToggle">🌐</button>
+                <div class="lang-menu" id="langMenu">
+                    <button onclick="changeLang('mr')">मराठी</button>
+                    <button onclick="changeLang('hi')">हिंदी</button>
+                    <button onclick="changeLang('en')">English</button>
+                </div>
+            </div>
+        </ul>
+
+
+        <a class="nav-book" href="booking.html">
+
+            Booking
+
+        </a>
+
+
+        <div class="ham" id="ham">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </div>
+
+    </nav>
+
+
+
+
+    <section class="section">
+
+
+        <p class="section-label">
+            अभिप्राय
+        </p>
+
+
+        <h1 class="section-h2">
+            प्रवाशांचे अनुभव
+        </h1>
+
+
+
+        <div class="testi-grid" id="reviewList">
+
+
+            <div class="loading">
+                Loading...
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+
+
+
+    <script type="module" src="../js/testimonials.js"></script>
+
+
+    <script>
+
+        const nav = document.getElementById("nav");
+
+        document.getElementById("ham")
+            .onclick = () => {
+
+                nav.classList.toggle("open");
+
+            };
+
+    </script>
+
+    <!-- Google Translate -->
+    <div id="google_translate_element" style="display:none;"></div>
+
+    <script>
+        const langToggle = document.getElementById("langToggle");
+        const langMenu = document.getElementById("langMenu");
+
+        langToggle.addEventListener("click", (e) => {
+            e.stopPropagation();
+            langMenu.classList.toggle("open");
+        });
+
+        document.addEventListener("click", (e) => {
+            if (!langMenu.contains(e.target) && e.target !== langToggle) {
+                langMenu.classList.remove("open");
+            }
+        });
+
+        function changeLang(lang) {
+
+            if (lang === 'mr') {
+                document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                location.reload();
+                return;
+            }
+
+            const langPair = `/mr/${lang}`;
+            document.cookie = `googtrans=${langPair}; path=/`;
+            document.cookie = `googtrans=${langPair}; path=/; domain=.${location.hostname}`;
+            location.reload();
+        }
+
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement(
+                {
+                    pageLanguage: 'mr',
+                    includedLanguages: 'mr,hi,en',
+                    autoDisplay: false
+                },
+                'google_translate_element'
+            );
+        }
+
+    </script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+
+</html>

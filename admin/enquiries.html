@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Enquiries</title>
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+
+<body>
+
+    <div class="admin-layout">
+
+        <aside class="sidebar">
+            <h2>Travel Admin</h2>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="packages.html">Packages</a>
+            <a href="bookings.html">Bookings</a>
+            <a href="gallery.html">Gallery upload</a>
+            <a href="enquiries.html" class="active">Enquiries</a>
+            <a href="testimonials.html">Testimonials</a>
+        </aside>
+
+        <main class="content">
+
+            <div class="page-head">
+                <div>
+                    <h1>Customer Enquiries</h1>
+                    <p class="page-sub">Questions submitted from the public site</p>
+                </div>
+            </div>
+
+            <div class="search-bar">
+                <input id="searchEnquiry" placeholder="Search by name or phone...">
+            </div>
+
+            <div id="enquiryList" class="content-grid">
+                <p class="loading-text">Loading enquiries...</p>
+            </div>
+
+        </main>
+    </div>
+
+    <script type="module" src="js/enquiries.js"></script>
+</body>
+
+</html>

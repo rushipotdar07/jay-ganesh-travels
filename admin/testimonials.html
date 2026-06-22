@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Testimonials</title>
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+
+<body>
+
+    <div class="admin-layout">
+
+        <aside class="sidebar">
+            <h2>Travel Admin</h2>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="packages.html">Packages</a>
+            <a href="bookings.html">Bookings</a>
+            <a href="gallery.html">Gallery upload</a>
+            <a href="enquiries.html">Enquiries</a>
+            <a href="testimonials.html" class="active">Testimonials</a>
+        </aside>
+
+        <main class="content">
+
+            <div class="page-head">
+                <div>
+                    <h1>Testimonials</h1>
+                    <p class="page-sub">Customer reviews shown on the public site</p>
+                </div>
+            </div>
+
+            <div class="review-form-card">
+                <h2>Add a Review</h2>
+                <form id="testimonialForm" class="review-form-grid">
+                    <input id="customerName" class="field-input" placeholder="Customer Name" required>
+                    <textarea id="review" class="field-input" placeholder="Review text" required></textarea>
+                    <select id="rating" class="field-input" required>
+                        <option value="5">★★★★★ (5)</option>
+                        <option value="4">★★★★ (4)</option>
+                        <option value="3">★★★ (3)</option>
+                        <option value="2">★★ (2)</option>
+                        <option value="1">★ (1)</option>
+                    </select>
+                    <button type="submit" class="primary-btn">Add Review</button>
+                </form>
+            </div>
+
+            <div id="testimonialList" class="content-grid">
+                <p class="loading-text">Loading testimonials...</p>
+            </div>
+
+        </main>
+    </div>
+
+    <script type="module" src="js/testimonials.js"></script>
+</body>
+
+</html>
