@@ -309,86 +309,77 @@ ${t.customerName}
 // ======================================
 
 
+// async function loadGallery() {
+//     const container =
+//         document.getElementById("galleryContainer");
+//     try {
+//         const snapshot =
+//             await getDocs(
+//                 collection(db, "gallery")
+//             );
+//         container.innerHTML = "";
+//         snapshot.forEach(doc => {
+//             const item =doc.data();
+//             container.innerHTML +=
+//                 `
+// <div class="tour-card">
+// <img
+// class="tour-thumb"
+// src="${item.imageUrl}"
+// loading="lazy"
+// >
+// </div>
+// `;
+//         });
+//         if (snapshot.empty) {
+//             container.innerHTML =
+//                 `
+// <p>No images uploaded</p>
+// `;
+//         }
+//     }
+//     catch (e) {
+//         console.log(e);
+//     }
+// }
+
+
 async function loadGallery() {
-
-
+    console.log("loadGallery called");
     const container =
         document.getElementById("galleryContainer");
 
-
-
     try {
-
-
         const snapshot =
             await getDocs(
                 collection(db, "gallery")
             );
 
-
+        console.log("snapshot size:", snapshot.size);
 
         container.innerHTML = "";
 
-
-
-        snapshot.forEach(doc => {
-
-
-            const item =
-                doc.data();
-
-
+        snapshot.docs.slice(0, 4).forEach(doc => {
+            const item = doc.data();
+            // console.log("gallery item:", item);
 
             container.innerHTML +=
                 `
-
 <div class="tour-card">
-
-
-<img
-
-class="tour-thumb"
-
-src="${item.imageUrl}"
-
-loading="lazy"
-
-
->
-
-
-
+<img class="tour-thumb" src="${item.imageUrl}" loading="lazy">
 </div>
-
-
 `;
-
-
-
         });
 
-
-
         if (snapshot.empty) {
-
-            container.innerHTML =
-                `
-<p>No images uploaded</p>
-`;
-
+            container.innerHTML = `<p>No images uploaded</p>`;
         }
-
-
-
     }
-
     catch (e) {
-
         console.log(e);
-
     }
-
 }
+
 // ======================================
 // Init
 // ======================================
