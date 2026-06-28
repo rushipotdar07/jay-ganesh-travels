@@ -9,7 +9,7 @@
 // query,
 // orderBy,
 // onAuthStateChanged
-// }from "././js/firebase.js";
+// }from "../../js/firebase.js";
 
 
 // const list = document.getElementById("bookingList");
@@ -318,7 +318,7 @@ updateDoc,
 query,
 orderBy,
 onAuthStateChanged
-}from "././js/firebase.js";
+}from "../../js/firebase.js";
 
 
 const list = document.getElementById("bookingList");

@@ -10,7 +10,7 @@ query,
 orderBy,
 serverTimestamp,
 onAuthStateChanged
-}from "././js/firebase.js";
+}from "../../js/firebase.js";
 
 
 const form = document.getElementById("galleryForm");

@@ -2,7 +2,7 @@ import{
 auth,
 signInWithEmailAndPassword,
 onAuthStateChanged
-}from "././js/firebase.js";
+}from "../../js/firebase.js";
 onAuthStateChanged(
 auth,
 (user)=>{

@@ -5,7 +5,7 @@ collection,
 getDocs,
 signOut,
 onAuthStateChanged
-}from "././js/firebase.js";
+}from "../../js/firebase.js";
 onAuthStateChanged(
 auth,
 (user)=>{

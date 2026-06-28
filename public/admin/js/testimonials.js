@@ -10,7 +10,7 @@
 // query,
 // orderBy,
 // onAuthStateChanged
-// }from "././js/firebase.js";
+// }from "../../js/firebase.js";
 
 
 // const form=
@@ -139,7 +139,7 @@ serverTimestamp,
 query,
 orderBy,
 onAuthStateChanged
-}from "././js/firebase.js";
+}from "../../js/firebase.js";
 
 
 const form=
