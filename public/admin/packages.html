@@ -56,7 +56,20 @@
 
                 <div class="row-2">
                     <input id="duration" placeholder="Duration (e.g. 3 Days / 2 Nights)">
-                    <input id="price" placeholder="Price (₹)">
+                    <!-- <input id="price" placeholder="Price (₹)"> -->
+                    <div class="price-tiers-section">
+                        <h3 style="margin:10px 0 6px;font-size:14px;color:var(--text-dark);">Price Tiers</h3>
+                        <!-- <div id="priceTierContainer">
+                            <div class="price-tier-row">
+                                <input class="tierLabel" placeholder="Tier name (e.g. AC with Hotel & Meals)">
+                                <input type="number" class="tierPrice" placeholder="Price (₹)">
+                                <button type="button" class="remove-tier-btn" onclick="removeTierRow(this)">✕</button>
+                            </div>
+                        </div> -->
+
+                        <div id="priceTierContainer"></div>
+                        <button type="button" id="addTier" class="ghost-btn">+ Add Price Tier</button>
+                    </div>
                 </div>
 
                 <input id="bookingAmount" placeholder="Minimum Booking Amount" type="number" required>

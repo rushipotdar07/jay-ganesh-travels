@@ -901,3 +901,149 @@ grid-template-columns:1.3fr 1.3fr auto;
 grid-template-columns:1fr;
 }
 }
+
+
+/* new for multiple prices into packages */
+.price-tier-row{
+display:grid;
+grid-template-columns:1fr auto auto;
+gap:10px;
+align-items:center;
+margin-bottom:10px;
+}
+.price-tier-row input{
+margin:0 !important;
+}
+.remove-tier-btn{
+background:#fbe9e3;
+color:var(--accent);
+border:none;
+width:34px;
+height:34px;
+border-radius:8px;
+cursor:pointer;
+font-size:16px;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+.remove-tier-btn:hover{
+background:#f6d9cd;
+}
+
+.tier-tag{
+display:inline-block;
+font-size:11px;
+background:var(--accent-soft);
+color:var(--accent);
+border-radius:6px;
+padding:2px 8px;
+margin-top:4px;
+font-weight:600;
+}
+
+
+/* ---------- Date sub-group ---------- */
+.date-group{
+margin-bottom:16px;
+border-radius:10px;
+overflow:hidden;
+border:1px solid var(--border);
+}
+.date-group:last-child{
+margin-bottom:0;
+}
+
+.date-group-head{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:14px 20px;
+background:var(--bg);
+border-bottom:1px solid var(--border);
+flex-wrap:wrap;
+gap:10px;
+}
+
+.date-group-info{
+display:flex;
+align-items:center;
+gap:12px;
+}
+
+.date-group-icon{
+font-size:20px;
+}
+
+.date-group-label{
+font-size:15px;
+font-weight:700;
+color:var(--text-dark);
+}
+
+.date-group-stats-inline{
+font-size:13px;
+color:var(--text-muted);
+margin-top:2px;
+}
+
+.stat-cleared{ color:#1e7d3b; font-weight:600; }
+.stat-pending{ color:var(--accent); font-weight:600; }
+
+.download-pdf-btn{
+background:var(--sidebar-bg);
+color:white;
+border:none;
+padding:9px 18px;
+border-radius:8px;
+font-size:13px;
+font-weight:600;
+cursor:pointer;
+display:flex;
+align-items:center;
+gap:6px;
+white-space:nowrap;
+}
+.download-pdf-btn:hover{
+background:var(--accent);
+}
+
+/* pkg-group head gets one more stat (Dates) */
+.pkg-group-stats div:first-child b{
+color:#f0c080;
+}
+
+/* price details */
+.tier-row-fields{
+display:flex;
+flex-direction:column;
+gap:8px;
+flex:1;
+}
+.tier-row-top{
+display:grid;
+grid-template-columns:1fr auto auto;
+gap:10px;
+align-items:center;
+}
+.tier-row-top input{
+margin:0 !important;
+}
+.tierDesc{
+width:100%;
+height:70px;
+resize:vertical;
+margin:0 !important;
+font-size:13px;
+}
+.price-tier-row{
+display:grid;
+grid-template-columns:1fr auto;
+gap:10px;
+align-items:start;
+margin-bottom:14px;
+border:1px solid var(--border);
+border-radius:12px;
+padding:14px;
+background:#fafafa;
+}

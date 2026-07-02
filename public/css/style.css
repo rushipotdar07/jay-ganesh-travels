@@ -2191,3 +2191,76 @@ body {
     padding: 80px 6%;
   }
 }
+
+/* ---------- Price tier selector ---------- */
+.tier-list{
+display:flex;
+flex-direction:column;
+gap:12px;
+margin-bottom:20px;
+}
+.tier-option{
+display:flex;
+align-items:center;
+gap:14px;
+border:2px solid #e8e4de;
+border-radius:12px;
+padding:16px 18px;
+cursor:pointer;
+transition:border-color .2s, background .2s;
+}
+.tier-option input[type="radio"]{
+width:18px;
+height:18px;
+accent-color:#d4500a;
+flex-shrink:0;
+}
+.tier-option.selected{
+border-color:#d4500a;
+background:#d4500a08;
+}
+.tier-option-body{
+display:flex;
+justify-content:space-between;
+align-items:center;
+flex:1;
+}
+.tier-label{
+font-size:15px;
+font-weight:600;
+color:#2b1a0d;
+}
+.tier-price{
+font-size:18px;
+font-weight:700;
+color:#d4500a;
+}
+
+/* price package description */
+.tier-option-body{
+display:flex;
+justify-content:space-between;
+align-items:flex-start;
+flex:1;
+gap:12px;
+}
+.tier-option-left{
+display:flex;
+flex-direction:column;
+gap:6px;
+}
+.tier-includes{
+list-style:none;
+margin:0;
+padding:0;
+display:flex;
+flex-direction:column;
+gap:4px;
+}
+.tier-includes li{
+font-size:13px;
+color:#5c4a3a;
+}
+.tier-option.selected .tier-includes li{
+color:#a8431f;
+}
