@@ -86,11 +86,6 @@ callback(null);
 });
 }
 
-
-
-
-
-
 // ======================================
 // Logout helper
 // ======================================
@@ -98,29 +93,12 @@ callback(null);
 
 export async function logoutAdmin(){
 
-
 try{
-
-
 await signOut(auth);
-
-
 showToast("Logged out");
-
-
 window.location.href="login.html";
-
-
 }
-
 catch(error){
-
-
 console.log(error);
-
-
 }
-
-
-
 }

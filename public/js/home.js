@@ -4,37 +4,21 @@
 
 
 import {
-
     db,
     collection,
     getDocs,
     query,
     orderBy
-
 }
-
     from "./firebase.js";
-
-
-
-
-
 // ======================================
 // Load Packages
 // ======================================
 
-
 async function loadPackages() {
-
-
     const container =
         document.getElementById("packagesContainer");
-
-
-
     try {
-
-
         container.innerHTML =
             `
 <div class="loading">
@@ -42,28 +26,16 @@ Loading Packages...
 </div>
 `;
 
-
-
         const q =
             query(
                 collection(db, "packages"),
                 orderBy("createdAt", "desc")
             );
 
-
-
         const snapshot =
             await getDocs(q);
-
-
-
         container.innerHTML = "";
-
-
-
         if (snapshot.empty) {
-
-
             container.innerHTML =
                 `
 <p>
@@ -72,58 +44,34 @@ No packages available.
 `;
 
             return;
-
-
         }
-
-
-
-
-
         snapshot.forEach(doc => {
-
-
             const data = doc.data();
-
-
-
             const image =
                 data.imageUrls?.[0]
                 ||
                 "https://images.unsplash.com/photo-1609920658906-8223bd289001";
 
-
-
             container.innerHTML +=
                 `
-
 <div class="tour-card rv">
-
 <div class="tour-thumb-wrap">
-
 <img 
 class="tour-thumb"
 src="${image}"
 loading="lazy">
-
 <span class="tour-ribbon">Popular</span>
-
 <span class="tour-type-pill">
 ${data.duration || "Tour"}
 </span>
-
 </div>
-
 <div class="tour-body">
-
 <div class="tour-eyebrow">
 Curated Journey
 </div>
-
 <div class="tour-title">
 ${data.title || "Travel Package"}
 </div>
-
 <div class="tour-stops">
 ${data.description || ""}
 </div>
@@ -303,47 +251,6 @@ ${t.customerName}
 
 
 }
-
-// ======================================
-// Gallery
-// ======================================
-
-
-// async function loadGallery() {
-//     const container =
-//         document.getElementById("galleryContainer");
-//     try {
-//         const snapshot =
-//             await getDocs(
-//                 collection(db, "gallery")
-//             );
-//         container.innerHTML = "";
-//         snapshot.forEach(doc => {
-//             const item =doc.data();
-//             container.innerHTML +=
-//                 `
-// <div class="tour-card">
-// <img
-// class="tour-thumb"
-// src="${item.imageUrl}"
-// loading="lazy"
-// >
-// </div>
-// `;
-//         });
-//         if (snapshot.empty) {
-//             container.innerHTML =
-//                 `
-// <p>No images uploaded</p>
-// `;
-//         }
-//     }
-//     catch (e) {
-//         console.log(e);
-//     }
-// }
-
-
 async function loadGallery() {
     console.log("loadGallery called");
     const container =
